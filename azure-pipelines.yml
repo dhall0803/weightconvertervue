@@ -17,7 +17,11 @@ steps:
 
 - script: 
     npm install
+  displayName: 'NPM Install'
+
+- script: 
     npm run build
+  displayName: 'NPM Build'
 
 - script: |
     pwd
