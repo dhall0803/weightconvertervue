@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: windows-latest
+  vmImage: ubuntu-latest
 
 steps:
 - task: NodeTool@0
@@ -15,14 +15,12 @@ steps:
     versionSpec: '18.9.x'
   displayName: 'Install Node.js'
 
-- task: Npm@1
-  inputs:
-    command: 'custom'
-    workingDir: '$(System.DefaultWorkingDirectory)'
-    customCommand: 'run-script build'
+- script: 
+    npm install]
+    npm run build
 
 - script: |
-    dir
+    ls -l
   displayName: (Debug) List directory contents
 
 # - task: AzureFileCopy@5
