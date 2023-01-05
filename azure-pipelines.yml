@@ -18,6 +18,7 @@ steps:
 - script: |
     npm install
     npm run build
+    ls -lah
   displayName: 'npm install and build'
 
 - task: AzureFileCopy@5
