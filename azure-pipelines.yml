@@ -15,10 +15,11 @@ steps:
     versionSpec: '18.9.x'
   displayName: 'Install Node.js'
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    workingDir: '$(System.DefaultWorkingDirectory)'
+    customCommand: 'run-script build'
 
 - script: |
     dir
@@ -26,7 +27,7 @@ steps:
 
 # - task: AzureFileCopy@5
 #   inputs:
-#     SourcePath: '$(System.DefaultWorkingDirectory)/dist'
+#     SourcePath: 'dist'
 #     azureSubscription: 'Production(e0a3326f-3de1-4bd0-9fab-56b04ec351ef)'
 #     Destination: 'AzureBlob'
 #     storage: 'stweightconverter'
