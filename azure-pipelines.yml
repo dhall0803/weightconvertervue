@@ -20,8 +20,14 @@ steps:
     npm run build
 
 - script: |
+    pwd
     ls -l
   displayName: (Debug) List directory contents
+
+- script: |
+    pwd
+    ls -l ../
+  displayName: (Debug) List parent directory contents
 
 # - task: AzureFileCopy@5
 #   inputs:
