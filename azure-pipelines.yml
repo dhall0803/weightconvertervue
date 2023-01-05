@@ -18,13 +18,16 @@ steps:
 - script: |
     npm install
     npm run build
-    ls -lah
   displayName: 'npm install and build'
 
-- task: AzureFileCopy@5
-  inputs:
-    SourcePath: '$(System.DefaultWorkingDirectory)/dist'
-    azureSubscription: 'Production(e0a3326f-3de1-4bd0-9fab-56b04ec351ef)'
-    Destination: 'AzureBlob'
-    storage: 'stweightconverter'
-    ContainerName: '$web'
+- script: |
+    dir
+  displayName: (Debug) List directory contents
+
+# - task: AzureFileCopy@5
+#   inputs:
+#     SourcePath: '$(System.DefaultWorkingDirectory)/dist'
+#     azureSubscription: 'Production(e0a3326f-3de1-4bd0-9fab-56b04ec351ef)'
+#     Destination: 'AzureBlob'
+#     storage: 'stweightconverter'
+#     ContainerName: '$web'
