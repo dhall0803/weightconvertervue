@@ -1,2 +1,14 @@
 @import 'bulma/css/bulma.css';
 
+nav.navbar {
+    background-color: #8155BA;
+}
+
+.navbar-item {
+    color: #dfcde4;
+}
+
+.navbar-brand>.navbar-item:hover {
+    color: #fff;
+}
+

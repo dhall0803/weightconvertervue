@@ -1,6 +1,15 @@
-import { createApp } from "vue";
+import { createApp, VueElement } from "vue";
 import App from "./App.vue";
 
-import "./assets/main.css";
+import { library } from '@fortawesome/fontawesome-svg-core'
 
-createApp(App).mount("#app");
+import { faWeightScale } from '@fortawesome/free-solid-svg-icons'
+
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+import "./assets/main.css";
+library.add(faWeightScale)
+
+const app = createApp(App);
+app.component('font-awesome-icon', FontAwesomeIcon);
+app.mount("#app");
