@@ -38,5 +38,5 @@ steps:
     azureSubscription: 'Production(e0a3326f-3de1-4bd0-9fab-56b04ec351ef)'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az storage blob upload-batch -d ''$web'' -s ./dist --account-name stweightconverter'
+    inlineScript: 'az storage blob upload-batch -d ''$web'' -s ./dist --account-name stweightconverter --overwrite'
   displayName: Deploy App to Storage Account
