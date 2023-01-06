@@ -1,0 +1,42 @@
+# Node.js with Vue
+# Build a Node.js project that uses Vue.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '18.9.x'
+  displayName: 'Install Node.js'
+
+- script: 
+    npm install
+  displayName: 'NPM Install'
+
+- script: 
+    npm run build
+  displayName: 'NPM Build'
+
+- script: |
+    pwd
+    ls -l
+  displayName: (Debug) List directory contents
+
+- script: |
+    pwd
+    ls -l ../
+  displayName: (Debug) List parent directory contents
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'Production(e0a3326f-3de1-4bd0-9fab-56b04ec351ef)'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'az storage blob upload-batch -d ''$web'' -s ./dist --account-name stweightconverter --overwrite'
+  displayName: Deploy App to Storage Account
