@@ -33,10 +33,10 @@ steps:
     ls -l ../
   displayName: (Debug) List parent directory contents
 
-# - task: AzureFileCopy@5
-#   inputs:
-#     SourcePath: 'dist'
-#     azureSubscription: 'Production(e0a3326f-3de1-4bd0-9fab-56b04ec351ef)'
-#     Destination: 'AzureBlob'
-#     storage: 'stweightconverter'
-#     ContainerName: '$web'
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'Production(e0a3326f-3de1-4bd0-9fab-56b04ec351ef)'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'az storage blob upload-batch -d ''$web'' -s ./dist --account-name stweightconverter'
+  displayName: Deploy App to Storage Account
